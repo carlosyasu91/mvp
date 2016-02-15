@@ -17,28 +17,30 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > My personal shop
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > For the people who have used things that they want to sell
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > With this website you will be able to upload pictures of your products and set a price and you will be able to share a link with your friends for them to look at what you're selling
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Sometimes people want to get rid of their used goods, it would be nice to have a place to sell them
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > You will be able to easily upload a photo from your phone and have a custom easy url for other people to look at what you're selling
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "We are very passionate about creating a space for people to share what they have to sell and not charge them for that"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > 1 Register using facebook or setting a username and password
+    2 Set your personal url I.E. myps.io/alex19
+    3 Start uploading photos, descriptions and prices of your products
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "It has never been easier for me to sell my used goods"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > You should go to http://myps.io and start selling your used goods.
