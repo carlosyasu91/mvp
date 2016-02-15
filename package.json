@@ -1,0 +1,31 @@
+{
+  "name": "mypersonalshop",
+  "version": "1.0.0",
+  "description": "Website for people who want to sell products",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosyasu91/2016-01-mvp.git"
+  },
+  "keywords": [
+    "my",
+    "personal",
+    "shop",
+    "website",
+    "mean",
+    "stack"
+  ],
+  "author": "Yasu Flores",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosyasu91/2016-01-mvp/issues"
+  },
+  "homepage": "https://github.com/carlosyasu91/2016-01-mvp#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

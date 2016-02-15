@@ -43,4 +43,4 @@ Once the project moves into development, the press release can be used as a touc
   > "It has never been easier for me to sell my used goods"
 
 ## Closing and Call to Action ##
-  > You should go to http://myps.io and start selling your used goods.
+  > Go to http://myps.io and start selling your used goods, it has never been easier.
