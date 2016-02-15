@@ -1,0 +1,30 @@
+{
+  "name": "mypersonalshop",
+  "description": "Website for people who want to sell products",
+  "main": "server.js",
+  "authors": [
+    "Yasu Flores"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "my",
+    "personal",
+    "shop",
+    "website",
+    "mean",
+    "stack"
+  ],
+  "homepage": "https://github.com/carlosyasu91/2016-01-mvp",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0"
+  }
+}
