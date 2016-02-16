@@ -26,9 +26,12 @@
   },
   "homepage": "https://github.com/carlosyasu91/2016-01-mvp#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "mysql": "^2.10.2",
+    "quickthumb": "0.0.12",
     "sequelize": "^3.19.2"
   }
 }

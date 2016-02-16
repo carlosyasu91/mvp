@@ -17,13 +17,23 @@ var Items = db.define('Items', {
   imageUrl: Sequelize.STRING,
   userid: Sequelize.INTEGER
 });
+
+var Images = db.define('Images', {
+  url: Sequelize.STRING,
+  itemid: Sequelize.INTEGER
+});
+
 Users.sync().then(function(){
   console.log('Users table created');
 });
 Items.sync().then(function(){
   console.log('Items table created');
 });
+Images.sync().then(function(){
+  console.log('Images table created');
+});
 
 db.Users = Users;
 db.Items = Items;
+db.Images = Images;
 module.exports = db;
