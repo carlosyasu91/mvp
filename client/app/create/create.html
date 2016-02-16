@@ -1,24 +1,12 @@
 <h1>Upload a new item</h1>
-<form method="POST" action="/api/item"  enctype="multipart/form-data">
-  <table>
-    <tr>
-      <td>Item name:</td>
-      <td><input type="text" name="name"/></td>
-    </tr>
-    <tr>
-      <td>Item description:</td>
-      <td><input type="text" name="description"/></td>
-    </tr>
-    <tr>
-      <td>Price: </td>
-      <td><input type="text" name="price"/></td>
-    </tr>
-    <tr>
-      <td>Image: </td>
-      <td><input type="file" name="image" multiple="multiple"/></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><input type="submit" name="submit" value="Submit item"/></td>
-    </tr>
-  </table>
+<form method="post" action="/api/item" enctype="">
+  Item name:
+  <input type="text" name="name">
+  Item description:
+  <input type="text" name="description">
+  Price: 
+  <input type="text" name="price">
+  Image URL:
+  <input type="text" name="imageUrl">
+  <input type="submit" name="submit" value="Submit item">
 </form>

@@ -31,11 +31,29 @@ var app = angular.module('shopApp', ['ngRoute'])
     }
   };
 })
+.factory('Items', function($http){
+  var getAllItems = function(cb){
+    $http({
+      method:'GET',
+      url:'/api/item'
+    }).then(function(response){
+      cb(response.data);
+    }).catch(function(err){
+      throw new Error(err);
+    });
+  }
+  return {
+    hello: 'hello',
+    getAllItems: getAllItems
+  }
+})
 .controller('menuController', function($scope){
   $scope.template = { name: 'usermenu.html', url:'app/usermenu/usermenu.html' };
 })
-.controller('dashboardController', function($scope){
-  $scope.data = TEST_ITEMS;
+.controller('dashboardController', function($scope, Items){
+  Items.getAllItems(function(data){
+    $scope.data = data;
+  });
   $scope.showmenu = 'true';
 })
 .controller('createController', function($scope){

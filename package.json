@@ -30,8 +30,10 @@
     "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "multer": "^1.1.0",
     "mysql": "^2.10.2",
     "quickthumb": "0.0.12",
+    "request": "^2.69.0",
     "sequelize": "^3.19.2"
   }
 }

@@ -14,7 +14,8 @@ var Items = db.define('Items', {
   name: Sequelize.STRING,
   price: Sequelize.INTEGER,
   description: Sequelize.STRING,
-  userid: Sequelize.INTEGER
+  userid: Sequelize.INTEGER,
+  imageUrl: Sequelize.STRING
 });
 
 var Images = db.define('Images', {

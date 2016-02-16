@@ -1,13 +1,12 @@
-
 <div class="dashboard">
   <h1>Yasu's dashboard</h1>
   <h3>You are currently selling 4 items</h3>
-
+<h1>{{test}}</h1>
   <h4>Filter your items: </h4><input type="text" ng-model="filter.items"/>
   <div class="item" ng-repeat="item in data | filter: filter.items">
       <h3>{{item.name}}</h3>
       <span> $ {{item.price}} USD</span>
       <p>I'm just trying to sell this</p>
-      <img src="{{item.image}}">
+      <img src="{{item.imageUrl}}">
   </div>
 </div>
