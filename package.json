@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/carlosyasu91/2016-01-mvp#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mysql": "^2.10.2"
   }
 }

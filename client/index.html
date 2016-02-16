@@ -2,20 +2,23 @@
 <html>
 <head>
   <title>mps.io</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
+
 </head>
 <body ng-app="shopApp">
-<nav>
-  <h1>My Personal Shop - mps.io</h1>
-</nav>
-<ul>
-  <li><a href="#">Add item</a></li>
-  <li><a href="#">Logout</a></li>
-</ul>
-<div ng-view></div>
+  <div class="container">
+  <nav>
+    <h1>mypersonalshop - mps.io</h1>
+  </nav>
+  <div ng-controller="menuController">
+    <div ng-include="template.url"></div>
+  </div>
+  <div ng-view></div>
   <script src="data/data.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="app/app.js"></script>
+</div>
 </body>
 </html>
