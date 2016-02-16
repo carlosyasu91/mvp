@@ -14,13 +14,16 @@ var Items = db.define('Items', {
   name: Sequelize.STRING,
   price: Sequelize.INTEGER,
   description: Sequelize.STRING,
-  imageUrl: Sequelize.STRING
+  imageUrl: Sequelize.STRING,
+  userid: Sequelize.INTEGER
 });
 Users.sync().then(function(){
   console.log('Users table created');
 });
 Items.sync().then(function(){
   console.log('Items table created');
-})
+});
 
+db.Users = Users;
+db.Items = Items;
 module.exports = db;

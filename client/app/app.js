@@ -1,4 +1,4 @@
-consolen.log('hey');
+console.log('hey');
 
 var app = angular.module('shopApp', ['ngRoute'])
 .config(function($routeProvider){
@@ -24,7 +24,7 @@ var app = angular.module('shopApp', ['ngRoute'])
   $scope.showmenu = 'false';
   $scope.login = function(){
     //check username and password
-    if($scope.username === USERNAME && $scope.password === PASSWORD){
+    if($scope.username === TEST_USERNAME && $scope.password === TEST_PASSWORD){
       //redirect to dashboard
       $location.path('/dashboard');
     } else {
@@ -37,6 +37,7 @@ var app = angular.module('shopApp', ['ngRoute'])
   $scope.template = { name: 'usermenu.html', url:'app/usermenu/usermenu.html' };
 })
 .controller('dashboardController', function($scope){
+  $scope.data = TEST_ITEMS;
   $scope.showmenu = 'true';
 })
 .controller('createController', function($scope){

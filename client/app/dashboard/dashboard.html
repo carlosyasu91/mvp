@@ -3,12 +3,11 @@
   <h1>Yasu's dashboard</h1>
   <h3>You are currently selling 4 items</h3>
 
-  <h4>Filter your items: </h4><input type="text"/>
-  <div class="item">
-      <h3>Samsung Galaxy</h3>
-      <span>$349.00 USD</span>
+  <h4>Filter your items: </h4><input type="text" ng-model="filter.items"/>
+  <div class="item" ng-repeat="item in data | filter: filter.items">
+      <h3>{{item.name}}</h3>
+      <span> $ {{item.price}} USD</span>
       <p>I'm just trying to sell this</p>
-      <img src="data/images/item1.jpg">
-      {{test}}
+      <img src="{{item.image}}">
   </div>
 </div>

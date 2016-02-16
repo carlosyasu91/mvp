@@ -1,22 +1,24 @@
 <h1>Upload a new item</h1>
-<table>
-  <tr>
-    <td>Item name:</td>
-    <td><input type="text" name="name"/></td>
-  </tr>
-  <tr>
-    <td>Item description:</td>
-    <td><input type="text" name="description"/></td>
-  </tr>
-  <tr>
-    <td>Price: </td>
-    <td><input type="text" name="price"/></td>
-  </tr>
-  <tr>
-    <td>Image: </td>
-    <td><input type="file" name="image"/></td>
-  </tr>
-  <tr>
-    <td rowspan="2"><input type="submit" name="image" value="Submit item"/></td>
-  </tr>
-</table>
+<form method="POST" action="/api/item">
+  <table>
+    <tr>
+      <td>Item name:</td>
+      <td><input type="text" name="name"/></td>
+    </tr>
+    <tr>
+      <td>Item description:</td>
+      <td><input type="text" name="description"/></td>
+    </tr>
+    <tr>
+      <td>Price: </td>
+      <td><input type="text" name="price"/></td>
+    </tr>
+  <!--   <tr>
+      <td>Image: </td>
+      <td><input type="file" name="image"/></td>
+    </tr> -->
+    <tr>
+      <td rowspan="2"><input type="submit" name="image" value="Submit item"/></td>
+    </tr>
+  </table>
+</form>
