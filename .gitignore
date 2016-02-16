@@ -29,6 +29,9 @@ client/lib
 node_modules/
 bower_components/
 
+# Images folder
+client/data/images
+
 # Floobits
 .floo
 .floobit
