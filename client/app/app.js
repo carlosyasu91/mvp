@@ -1,4 +1,4 @@
-console.log('hey');
+consolen.log('hey');
 
 var app = angular.module('shopApp', ['ngRoute'])
 .config(function($routeProvider){
