@@ -45,45 +45,48 @@ module.exports.handleItemGet = function(req, res){
   }
 };
 
+// --> GET to /api/login
 module.exports.handleLogin = function(req, res){
-  db.Users.findOne({username: req.body.username})
+  console.log('QUERY: ');
+  console.log(req.query);
+  var username = req.query.username;
+  db.Users.findOne( { where: { username: req.query.username } } )
   .then(function(user){
-
-  })
-  .catch(function(err){
-    throw new Error('Could not find user');
-  })
-};
-
-module.exports.handleSignIn = function(req, res){
-  var username = req.body.username;
-  var password = req.body.password;
-  db.Users.findOne({username: req.body.username})
-  .then(function(user){
-    if(!user){
-      //register
-      Users.create({
-        username: username, 
-        password: password
-      })
-      .then(function(newUser){
-        //create session
-        req.session.regenerate(function(err){
-          if(err) throw Error('Error while regenerating session');
-          req.session.user = username;
-        });
-        //redirect to dashboard
-        res.redirect('/#/dashboard');
-      })
-      .catch(function(err){
-        console.log('Error while creating new user at POST to /api/signin');
-      })
+    console.log('INSIDE THEN');
+    console.log(user);
+    if(user){
+      console.log('BEFORE REGEN')
+      req.session.regenerate(function(err){
+        if(err) throw Error('Error while regenerating session');
+        req.session.user = username;
+      });
     } else {
-      //return error, user already exists
-      res.status(200).send('User already exists');
+      res.status(301).send('Redirecting');
     }
   })
   .catch(function(err){
-    throw new Error('Error finding user during sign in');
+    throw new Error(err);
+  })
+};
+
+//  --> POST to /api/signin
+module.exports.handleSignIn = function(req, res){
+  var username = req.body.username;
+  var password = req.body.password;
+  db.Users.findOrCreate({where: {username: username}, defaults: {password: password}})
+  .spread(function(user, created){
+    console.log(user + ' ' + created);
+    req.session.regenerate(function(err){
+      if(err) throw Error('Error while regenerating session');
+      req.session.user = username;
+      //redirect to dashboard
+      res.redirect('/#/dashboard');
+    });
+  })
+  .catch(function(err){
+    throw new Error(err);
+  })
+  .catch(function(err){
+    throw new Error(err);
   })
 };

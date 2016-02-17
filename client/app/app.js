@@ -29,6 +29,9 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
   $scope.showmenu = 'false';
   $scope.login = function(){
     //check username and password
+    // Login.loginUser($scope.username, $scope.password, function(){
+    //   $location.path('/dashboard');
+    // });
     if($scope.username === TEST_USERNAME && $scope.password === TEST_PASSWORD){
       //redirect to dashboard
       $location.path('/dashboard');
@@ -38,8 +41,12 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
     }
   };
 })
-.controller('signinController', function($scope){
-
+.controller('signinController', function($scope, $location, Login){
+  $scope.signin = function(){
+    Login.loginUser($scope.username, $scope.password, function(){
+        $location.path('/dashboard');
+    });
+  }
 })
 .controller('menuController', function($scope){
   $scope.template = { name: 'usermenu.html', url:'app/usermenu/usermenu.html' };

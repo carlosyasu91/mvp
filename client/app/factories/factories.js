@@ -1,21 +1,51 @@
 var factories = angular.module('factories', [])
-.factory('Login', function($http){
-  var loginUser = function(username, password){
+
+//Login Factory
+.factory('Login', function($http, $location){
+  var loginUser = function(username, password, cb){
+    console.log(username);
+    console.log(password);
     $http({
       method: 'GET',
-      url: '/api/login'
+      url: '/api/login?username='+ username + '&password=' + password
     })
     .then(function(response){
-      
+        cb();
     })
     .catch(function(error){
       throw new Error(error);
     });
   };
+
+  var signin = function(username, password, cb){
+    $http({
+      method:'POST',
+      url:'/api/signin',
+      data: {
+        username: username,
+        password: password
+      }
+    })
+    .then(function(response){
+      if(response.status === 404){
+        $location.path('/login');
+      } else {
+        console.log('Signed in'); 
+        cb();  
+      }
+    })
+    .catch(function(err){
+      throw new Error(err);
+    });
+  }
+
   return {
-    loginUser: loginUser
+    loginUser: loginUser,
+    signin: signin
   }   
 })
+
+//Items Factory
 .factory('Items', function($http){
   var getAllItems = function(cb, data){
     $http({
