@@ -1,12 +1,19 @@
 <div class="dashboard">
+<div class="row">
   <h1>Yasu's dashboard</h1>
-  <h3>You are currently selling 4 items</h3>
-<h1>{{test}}</h1>
-  <h4>Filter your items: </h4><input type="text" ng-model="filter.items"/>
-  <div class="item" ng-repeat="item in data | filter: filter.items">
-      <h3>{{item.name}}</h3>
-      <span> $ {{item.price}} USD</span>
-      <p>I'm just trying to sell this</p>
+  <h3>You are currently selling {{data.length}} items</h3>
+  <h1>{{test}}</h1>
+  <h4>Filter your items: </h4>
+  <input type="text" ng-model="filter.items" class="short"/><br>
+</div>
+<div class="items row small-up-1 medium-up-2 large-up-3">
+  <div class="item column" ng-repeat="item in data | filter: filter.items">
+    <div class="callout">
+      <p>{{item.name}}</p>
       <img src="{{item.imageUrl}}">
+      <p class="lead"> $ {{item.price}} USD</p>
+      <p class="subheader">{{item.description}}</p>
+    </div>
   </div>
+</div>
 </div>

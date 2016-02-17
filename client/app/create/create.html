@@ -1,12 +1,14 @@
-<h1>Upload a new item</h1>
-<form method="post" action="/api/item" enctype="">
-  Item name:
-  <input type="text" name="name">
-  Item description:
-  <input type="text" name="description">
-  Price: 
-  <input type="text" name="price">
-  Image URL:
-  <input type="text" name="imageUrl">
-  <input type="submit" name="submit" value="Submit item">
-</form>
+<div class="row create-form">
+  <h1>Upload a new item</h1>
+  <form method="post" action="/api/item" enctype="">
+    Item name:
+    <input type="text" name="name" placeholder="Choose a name for your product">
+    Item description:
+    <input type="text" name="description" placeholder="Write a description">
+    Price: 
+    <input type="text" name="price" placeholder="Pick a price">
+    Image URL:
+    <input type="text" name="imageUrl" placeholder="Paste the url for your image">
+    <button class="button" type="submit" name="submit">Submit item</button>
+  </form>
+</div>

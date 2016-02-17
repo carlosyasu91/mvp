@@ -1,6 +1,25 @@
-<h1>Please login</h1>
-  <form ng-submit="login()">
-    <input ng-model="username" type="text" name="username"/>
-    <input ng-model="password" type="password" name="password"/>
-    <input type="submit"/>
-  </form> 
+
+<div class="row">
+<div class="medium-5 large-3 columns">
+        <h3>Login</h3>
+  <div class="callout secondary">
+    <form ng-submit="login()">
+      <div class="row">
+        <div class="small-12 columns">
+          <label>Username
+            <input ng-model="username" type="text" name="username" placeholder="Type your username"/>
+          </label>
+        </div>
+        <div class="small-12 columns">
+          <label>Password
+            <input ng-model="password" type="password" name="password" placeholder="Type your password"/>
+          </label>
+          <button type="submit" class="button">Login</button>
+          <label><a href="#/signin">Not registered yet? Register here</a></label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+

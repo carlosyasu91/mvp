@@ -1,4 +1,4 @@
-var app = angular.module('shopApp', ['ngRoute'])
+var app = angular.module('shopApp', ['ngRoute', 'factories'])
 .config(function($routeProvider){
   $routeProvider
   .when('/login', {
@@ -13,12 +13,19 @@ var app = angular.module('shopApp', ['ngRoute'])
     controller: 'createController',
     templateUrl: 'app/create/create.html'
   })
+  .when('/signin', {
+    controller: 'signinController',
+    templateUrl: 'app/register/register.html'  
+  })
+  .when('/search', {
+    controller: 'searchController',
+    templateUrl: 'app/search/search.html'
+  })
   .otherwise({
     redirectTo: '/login'
   });
 })
-.controller('loginController', function($scope, $location){
-  $scope.test = 'Hello';
+.controller('loginController', function($scope, $location, Login){
   $scope.showmenu = 'false';
   $scope.login = function(){
     //check username and password
@@ -31,21 +38,8 @@ var app = angular.module('shopApp', ['ngRoute'])
     }
   };
 })
-.factory('Items', function($http){
-  var getAllItems = function(cb){
-    $http({
-      method:'GET',
-      url:'/api/item'
-    }).then(function(response){
-      cb(response.data);
-    }).catch(function(err){
-      throw new Error(err);
-    });
-  }
-  return {
-    hello: 'hello',
-    getAllItems: getAllItems
-  }
+.controller('signinController', function($scope){
+
 })
 .controller('menuController', function($scope){
   $scope.template = { name: 'usermenu.html', url:'app/usermenu/usermenu.html' };
@@ -58,4 +52,11 @@ var app = angular.module('shopApp', ['ngRoute'])
 })
 .controller('createController', function($scope){
   $scope.showmenu = 'true';
-});
+})
+.controller('searchController', function($scope, Items){
+  $scope.searchForItems = function(){
+    Items.searchForItems($scope.filter ? $scope.filter.search : '', function(data){
+      $scope.data = data;
+    });
+  }
+})
