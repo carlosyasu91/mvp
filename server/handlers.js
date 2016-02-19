@@ -54,13 +54,12 @@ module.exports.handleLogin = function(req, res){
     if(user){
       req.session.regenerate(function(err){
         if(err) throw Error('Error while regenerating session');
-        req.session.user = username;
-        res.redirect('#/dashboard');
+        req.session.user = user;
+        res.json(user);
       });
     } else {
       // res.status(301).send('Redirecting');
-      console.log("trying to redirect");
-     res.redirect('/');
+     res.json({message: 'User not found'});
     }
   })
   .catch(function(err){
@@ -73,14 +72,18 @@ module.exports.handleSignIn = function(req, res){
   var username = req.body.username;
   var password = req.body.password;
   db.Users.findOrCreate({where: {username: username}, defaults: {password: password}})
-  .spread(function(user, created){
-    console.log(user + ' ' + created);
-    req.session.regenerate(function(err){
-      if(err) throw Error('Error while regenerating session');
-      req.session.user = username;
-      //redirect to dashboard
-      res.redirect('/#/dashboard');
-    });
+  .spread(function(user){
+    if(user){
+      res.json({message: 'User already exists'});
+    } else {
+      console.log(user + ' ' + created);
+      req.session.regenerate(function(err){
+        if(err) throw Error('Error while regenerating session');
+        req.session.user = username;
+        //redirect to dashboard
+        res.json({message: 'Successfully signed in'});
+      });
+    }
   })
   .catch(function(err){
     throw new Error(err);
@@ -89,3 +92,9 @@ module.exports.handleSignIn = function(req, res){
     throw new Error(err);
   })
 };
+
+module.exports.handleLogout = funcion(req, res){
+  req.session.destroy(function(){
+    res.json({message: 'Successfully logged out'});
+  })
+}

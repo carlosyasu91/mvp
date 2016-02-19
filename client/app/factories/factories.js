@@ -3,16 +3,14 @@ var factories = angular.module('factories', [])
 //Login Factory
 .factory('Login', function($http, $location){
   var loginUser = function(username, password, cb){
-    console.log('Username:', username);
-    console.log('Password:', password);
     $http({
       method: 'GET',
       url: '/api/login?username='+ username + '&password=' + password
     })
     .then(function(response){
-      console.log('Status:',response.status);
-      console.log('Data:',response.data);
-        cb(response.isLogged);
+      console.log(response);
+      if(repsonse.data.message)
+        cb(response.data);
     })
     .catch(function(error){
       throw new Error(error);
