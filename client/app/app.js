@@ -29,16 +29,16 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
   $scope.showmenu = 'false';
   $scope.login = function(){
     //check username and password
-    // Login.loginUser($scope.username, $scope.password, function(){
+    Login.loginUser($scope.username, $scope.password, function(isLogged){
+      // $location.path('/dashboard');
+    });
+    // if($scope.username === TEST_USERNAME && $scope.password === TEST_PASSWORD){
+    //   //redirect to dashboard
     //   $location.path('/dashboard');
-    // });
-    if($scope.username === TEST_USERNAME && $scope.password === TEST_PASSWORD){
-      //redirect to dashboard
-      $location.path('/dashboard');
-    } else {
-      //redirect to login
-      $location.path('/login');
-    }
+    // } else {
+    //   //redirect to login
+    //   $location.path('/login');
+    // }
   };
 })
 .controller('signinController', function($scope, $location, Login){

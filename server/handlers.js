@@ -47,21 +47,20 @@ module.exports.handleItemGet = function(req, res){
 
 // --> GET to /api/login
 module.exports.handleLogin = function(req, res){
-  console.log('QUERY: ');
-  console.log(req.query);
   var username = req.query.username;
   db.Users.findOne( { where: { username: req.query.username } } )
   .then(function(user){
-    console.log('INSIDE THEN');
     console.log(user);
     if(user){
-      console.log('BEFORE REGEN')
       req.session.regenerate(function(err){
         if(err) throw Error('Error while regenerating session');
         req.session.user = username;
+        res.redirect('#/dashboard');
       });
     } else {
-      res.status(301).send('Redirecting');
+      // res.status(301).send('Redirecting');
+      console.log("trying to redirect");
+     res.redirect('/');
     }
   })
   .catch(function(err){

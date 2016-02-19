@@ -14,6 +14,7 @@ app.use(session({
 }));
 
 function restrict(req, res, next){
+  console.log('Session:',req.session);
   if(req.session.user){
     next();
   } else {
@@ -30,7 +31,7 @@ function restrict(req, res, next){
 app.use(express.static(__dirname + '/client'));
 
 app.get('/api/item', handlers.handleItemGet);
-app.post('/api/item', handlers.handleItemPost);
+app.post('/api/item', restrict, handlers.handleItemPost);
 app.get('/api/login', handlers.handleLogin);
 app.post('/api/signin', handlers.handleSignIn);
 
