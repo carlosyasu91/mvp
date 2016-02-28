@@ -37,3 +37,6 @@ client/data/images
 .floobit
 .floo
 .flooignore
+
+# Facebook Developers keys
+keys.js
