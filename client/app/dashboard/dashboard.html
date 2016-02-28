@@ -5,10 +5,11 @@
   <h1>{{test}}</h1>
   <h4>Filter your items: </h4>
   <input type="text" ng-model="filter.items" class="short"/><br>
+  <span ng-if="message" class="success radius label">{{message}}</span>
 </div>
 <div class="items row small-up-1 medium-up-2 large-up-3">
   <div class="item column" ng-repeat="item in data | filter: filter.items">
-    <div class="callout">
+    <div class="callout" ng-click="deleteItem(item.id)">
       <p>{{item.name}}</p>
       <img src="{{item.imageUrl}}">
       <p class="lead"> $ {{item.price}} USD</p>
