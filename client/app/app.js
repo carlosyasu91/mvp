@@ -7,11 +7,39 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
   })
   .when('/dashboard', {
     controller: 'dashboardController',
-    templateUrl: 'app/dashboard/dashboard.html'
+    templateUrl: 'app/dashboard/dashboard.html',
+    // resolve: {
+    //   check: function($location, $rootScope, Login){
+    //     Login.getFacebookProfile(function(profile){
+    //       if(!profile.id && !profile.displayName){
+    //         $rootScope.savedLocation = $location.url();
+    //         $location.path('/login');
+    //       } else {
+    //         $rootScope.id = profile.id;
+    //         $rootScope.displayName = profile.displayName;
+    //       }
+    //     });
+    //   }
+    // },
+    authenticate: true
   })
   .when('/create', {
     controller: 'createController',
-    templateUrl: 'app/create/create.html'
+    templateUrl: 'app/create/create.html',
+    // resolve: {
+    //   check: function($location, $rootScope, Login){
+    //     Login.getFacebookProfile(function(profile){
+    //       if(!profile.id && !profile.displayName){
+    //         $rootScope.savedLocation = $location.url();
+    //         $location.path('/login');
+    //       } else {
+    //         $rootScope.id = profile.id;
+    //         $rootScope.displayName = profile.displayName;
+    //       }
+    //     });
+    //   }
+    // },
+    authenticate: true
   })
   .when('/signin', {
     controller: 'signinController',
@@ -25,20 +53,37 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
     redirectTo: '/login'
   });
 })
+.run(function($rootScope, $location, Login){
+  $rootScope.$on('$routeChangeStart', function(event, next){
+    if(next.$$route && next.$$route.authenticate && !$rootScope.id){
+      $location.path('/login');
+      Login.getFacebookProfile(function(profile){
+        $rootScope.id = profile.id;
+        $rootScope.displayName = profile.displayName;
+      });
+    }
+  });
+})
 .controller('loginController', function($scope, $location, Login){
+  
   $scope.showmenu = 'false';
+  
+  $scope.getProfile = function(){
+    Login.getFacebookProfile(function(profile){ 
+      console.log(profile);
+    });
+  };
+
   $scope.login = function(){
     //check username and password
-    Login.loginUser($scope.username, $scope.password, function(isLogged){
+    Login.loginUser($scope.username, $scope.password, function(data){
       // $location.path('/dashboard');
+      if(data && data.message){
+        $scope.message = data.message;
+      } else {
+        $location.path('/dashboard');
+      }
     });
-    // if($scope.username === TEST_USERNAME && $scope.password === TEST_PASSWORD){
-    //   //redirect to dashboard
-    //   $location.path('/dashboard');
-    // } else {
-    //   //redirect to login
-    //   $location.path('/login');
-    // }
   };
 })
 .controller('signinController', function($scope, $location, Login){
@@ -55,6 +100,14 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
   Items.getAllItems(function(data){
     $scope.data = data;
   });
+  $scope.deleteItem = function(id){
+    Items.deleteItem(id, function(response){
+      $scope.message = response.message;
+      Items.getAllItems(function(data){
+        $scope.data = data;
+      });
+    });
+  }
   $scope.showmenu = 'true';
 })
 .controller('createController', function($scope){
