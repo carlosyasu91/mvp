@@ -1,12 +1,14 @@
 
 <div class="row">
 <div class="medium-5 large-3 columns">
-        <h3>Login</h3>
+  <h3>Login</h3>
   <div class="callout secondary">
     <form ng-submit="login()">
       <div class="row">
+        <!-- Regular login, disabled for now, we will enable it later
         <div class="small-12 columns">
           <label>Username
+            <label class="error">  {{message}}</label>
             <input ng-model="username" type="text" name="username" placeholder="Type your username"/>
           </label>
         </div>
@@ -16,6 +18,9 @@
           </label>
           <button type="submit" class="button">Login</button>
           <label><a href="#/signin">Not registered yet? Register here</a></label>
+        </div> -->
+        <div class="small-12 columns">
+        <a href="/login/facebook">Log in with Facebook</a>
         </div>
       </div>
     </form>

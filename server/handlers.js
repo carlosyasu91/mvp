@@ -29,8 +29,6 @@ module.exports.handleItemPost = function(req, res){
       });
 };
 module.exports.handleItemGet = function(req, res){
-  console.log(req.query);
-  console.log(req.params);
   if(!req.body.filter){
     db.Items.findAll().then(function(items){
       res.status(200).send(items);
@@ -43,6 +41,28 @@ module.exports.handleItemGet = function(req, res){
       res.status(200).send(items);
     });
   }
+};
+
+
+// --> DELETE to /api/item
+module.exports.handleItemDelete = function(req, res){
+  var id = req.query.id;
+  db.Items.findOne({where:{ 
+          id: id
+        }
+     })
+    .then(function(item){
+      return item.destroy();
+    })
+    .catch(function(err){
+      throw new Error(err);
+    })
+    .then(function(){
+      res.status(200).send({message: 'Item successfully deleted'});
+    })
+    .catch(function(err){
+      throw new Error(err);
+    });
 };
 
 // --> GET to /api/login
@@ -72,17 +92,16 @@ module.exports.handleSignIn = function(req, res){
   var username = req.body.username;
   var password = req.body.password;
   db.Users.findOrCreate({where: {username: username}, defaults: {password: password}})
-  .spread(function(user){
-    if(user){
-      res.json({message: 'User already exists'});
+  .spread(function(user, created){
+    if(created){
+    req.session.regenerate(function(err){
+      if(err) throw Error('Error while regenerating session');
+      req.session.user = username;
+      //redirect to dashboard
+      res.send({message: 'Account created successfully'});
+    });
     } else {
-      console.log(user + ' ' + created);
-      req.session.regenerate(function(err){
-        if(err) throw Error('Error while regenerating session');
-        req.session.user = username;
-        //redirect to dashboard
-        res.json({message: 'Successfully signed in'});
-      });
+      res.send({message: 'User already exists'});
     }
   })
   .catch(function(err){
@@ -93,8 +112,8 @@ module.exports.handleSignIn = function(req, res){
   })
 };
 
-module.exports.handleLogout = funcion(req, res){
+module.exports.handleLogout = function(req, res){
   req.session.destroy(function(){
-    res.json({message: 'Successfully logged out'});
+    response.json({});
   })
 }
