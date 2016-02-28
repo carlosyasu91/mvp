@@ -8,37 +8,11 @@ var app = angular.module('shopApp', ['ngRoute', 'factories'])
   .when('/dashboard', {
     controller: 'dashboardController',
     templateUrl: 'app/dashboard/dashboard.html',
-    // resolve: {
-    //   check: function($location, $rootScope, Login){
-    //     Login.getFacebookProfile(function(profile){
-    //       if(!profile.id && !profile.displayName){
-    //         $rootScope.savedLocation = $location.url();
-    //         $location.path('/login');
-    //       } else {
-    //         $rootScope.id = profile.id;
-    //         $rootScope.displayName = profile.displayName;
-    //       }
-    //     });
-    //   }
-    // },
     authenticate: true
   })
   .when('/create', {
     controller: 'createController',
     templateUrl: 'app/create/create.html',
-    // resolve: {
-    //   check: function($location, $rootScope, Login){
-    //     Login.getFacebookProfile(function(profile){
-    //       if(!profile.id && !profile.displayName){
-    //         $rootScope.savedLocation = $location.url();
-    //         $location.path('/login');
-    //       } else {
-    //         $rootScope.id = profile.id;
-    //         $rootScope.displayName = profile.displayName;
-    //       }
-    //     });
-    //   }
-    // },
     authenticate: true
   })
   .when('/signin', {
