@@ -1,21 +1,32 @@
 var factories = angular.module('factories', [])
 
 //Login Factory
-.factory('Login', function($http, $location){
+.factory('Login', function($http, $location, $rootScope){
   var loginUser = function(username, password, cb){
     $http({
       method: 'GET',
       url: '/api/login?username='+ username + '&password=' + password
     })
     .then(function(response){
-      console.log(response);
-      if(repsonse.data.message)
         cb(response.data);
     })
     .catch(function(error){
       throw new Error(error);
     });
   };
+
+  var getFacebookProfile = function(cb){
+    $http({
+      method: 'GET',
+      url: '/profile',
+    }).then(function(response){
+      $rootScope.id = response.data.id;
+      $rootScope.displayName = response.data.displayName;
+      cb(response.data);
+    }).catch(function(error){
+      $location.path('/login');
+    });
+  }
 
   var signin = function(username, password, cb){
     $http({
@@ -30,7 +41,6 @@ var factories = angular.module('factories', [])
       if(response.status === 404){
         $location.path('/login');
       } else {
-        console.log('Signed in'); 
         cb();  
       }
     })
@@ -41,7 +51,8 @@ var factories = angular.module('factories', [])
 
   return {
     loginUser: loginUser,
-    signin: signin
+    signin: signin,
+    getFacebookProfile: getFacebookProfile
   }   
 })
 
@@ -51,6 +62,17 @@ var factories = angular.module('factories', [])
     $http({
       method:'GET',
       url:'/api/item'
+    }).then(function(response){
+      cb(response.data);
+    }).catch(function(err){
+      throw new Error(err);
+    });
+  }
+  var deleteItem = function(id, cb){
+    $http({
+      method:'DELETE',
+      url:'/api/item',
+      params: {id: id}
     }).then(function(response){
       cb(response.data);
     }).catch(function(err){
@@ -71,6 +93,18 @@ var factories = angular.module('factories', [])
   }
   return {
     getAllItems: getAllItems,
-    searchForItems: searchForItems
+    searchForItems: searchForItems,
+    deleteItem: deleteItem
   }
+})
+.factory('Session', function($http){
+  var Session = {
+    data: {},
+    saveSession: function(){ /*Save session to db*/},
+    updateSession: function(){
+      $http.get('/api/user/session').then(function(res){ return Session.data = res.data});
+    }
+  };
+  Session.updateSession();
+  return Session;
 });
